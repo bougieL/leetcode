@@ -70,7 +70,7 @@
  * @return {number[][]}
  */
 var threeSum = function (nums) {
-  nums = nums.sort((a, b) => a - b);
+  nums.sort((a, b) => a - b);
   const res = [];
   for (let i = 0; i < nums.length; i++) {
     if (i > 0 && nums[i] === nums[i - 1]) continue;

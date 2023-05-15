@@ -54,18 +54,22 @@ var longestPalindrome = function (s) {
   let result = s[0];
 
   function expandCenter(left, right) {
-    while (left >= 0 && right < s.length && s[left] === s[right]) {
+    while (left > 0 && right < s.length - 1 && s[left] === s[right]) {
       left--;
       right++;
     }
-    return [right - left, left, right];
+    if (s[left] === s[right] && right - left + 1 > result.length) {
+      result = s.substring(left, right + 1);
+    }
   }
 
   for (let i = 0; i < s.length; i++) {
-    const [len1] = expandCenter(i, i);
-    const [len2] = expandCenter(i, i + 1);
+    expandCenter(i, i);
+    expandCenter(i, i + 1);
   }
 
   return result;
 };
 // @lc code=end
+
+console.log(longestPalindrome("babad"));
